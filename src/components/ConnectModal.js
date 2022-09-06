@@ -8,15 +8,17 @@ const ConnectModal = () => {
   return (
     <div className="connect-modal">
       <div className="header-btn">
-        <button 
-            style={{background: signup ? "rgb(28,28,28)" : "rgb(83,83,83)"}}
-            onClick={() => setSignUp(true)}
-            >S'inscrire
+        <button
+          style={{ background: signup ? "rgb(28,28,28)" : "rgb(83,83,83)" }}
+          onClick={() => setSignUp(true)}
+        >
+          S'inscrire
         </button>
-        <button 
-            style={{background: signup ? "rgb(83,83,83)" : "rgb(28,28,28)"}}
-            onClick={() => setSignUp(false)}
-            >Se connecter
+        <button
+          style={{ background: signup ? "rgb(83,83,83)" : "rgb(28,28,28)" }}
+          onClick={() => setSignUp(false)}
+        >
+          Se connecter
         </button>
       </div>
       {signup ? <SignUp /> : <Login />}
