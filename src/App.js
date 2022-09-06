@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ConnectModal from "./components/ConnectModal";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./utils/firebase.config.js";
 import CreatePost from "./components/CreatePost";
 
@@ -11,15 +11,21 @@ const App = () => {
     setUser(currentUser);
   }); //pour savoir si on est connecté
 
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
   return (
     <div>
       <div className="app-header">
         {user && (
           <div className="user-infos">
-            <span>{user?.displayName[0]}</span> 
-            {/* si user existe alors tu m'affiches displayName */}
+            <span>{user?.displayName[0]}</span>
+            {/* si user existe alors tu m'affiches displayName, et displayname de 0 pour avoir la première lettre du pseudo qui s'affiche */}
             <h4>{user?.displayName}</h4>
-            <button><i className="fa-solid fa-arrow-right-from-bracket"></i></button>
+            <button onClick={() => handleLogout()}>
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
           </div>
         )}
         {user ? <CreatePost /> : <ConnectModal />}
